@@ -11,3 +11,6 @@
   2. 稀疏化模型，令 `mnist_test.py` 中 `Prune = True`， 并得到测试精度；
   3. 调整  `mnist_test.py` 中的`prune ratio`;
   4. 若精度不满足要求，则进行重训练; 设置 `Retrain=True`.
+  
+ - Reference Paper 
+  - Learning both Weights and Connections for Efficient Neural Networks
