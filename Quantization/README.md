@@ -16,3 +16,6 @@
 - [ ] 动态量化方案;
 - [ ] Quantization-Aware-Training
 - [ ] Post-Training Quantization
+
+### Reference Paper 
+- Quantizing deep convolutional networks for efficient inference: A whitepaper
