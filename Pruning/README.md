@@ -13,4 +13,4 @@
   4. 若精度不满足要求，则进行重训练; 设置 `Retrain=True`.
   
  - Reference Paper 
-  - Learning both Weights and Connections for Efficient Neural Networks
+    - Learning both Weights and Connections for Efficient Neural Networks
