@@ -14,7 +14,8 @@ except :
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyper-parameters 
-Quant = True 
+Baseline = True
+Quant = False 
 Retrain = False
 input_size = 784
 hidden_size = 500
@@ -102,19 +103,22 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)  
 
+    if Baseline :
+        train(model, train_loader, num_epochs, device, optimizer, criterion)
+        test(model, test_loader, device)
+        # Save the model checkpoint
+        torch.save(model.state_dict(), 'model_base.ckpt')
+
     if Quant :
-        model.load_state_dict(torch.load("model.ckpt"))
+        model.load_state_dict(torch.load("model_base.ckpt"))
         test(model, test_loader, device)
         if Retrain:
-            train()
-            test()
+            train(model, train_loader, num_epochs, device, optimizer, criterion)
+            test(model, test_loader, device)
             # Save the model checkpoint
-            torch.save(model.state_dict(), 'model.ckpt')  
+        torch.save(model.state_dict(), 'model_quant.ckpt')  
         exit()
 
-    train()
-    test()
-    # Save the model checkpoint
-    torch.save(model.state_dict(), 'model.ckpt')
+
 if __name__ == "__main__":
     main()
